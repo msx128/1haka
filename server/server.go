@@ -207,8 +207,7 @@ func (a *API) process(ctx context.Context, app application.Application) {
 	if err != nil || app.State != application.Approved {
 		return
 	}
-	// next there not real states or something
-	// like they manual
+	// next there manual steps
 }
 
 func (a *API) scoringStage(ctx context.Context, app application.Application) (application.Application, error) {

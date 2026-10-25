@@ -24,9 +24,27 @@ type Mock struct {
 
 // show cases
 
+type InnJSON struct {
+	Inn string `json:"inn"`
+}
+
 func (Mock) ErgulEndpoint(w http.ResponseWriter, r *http.Request) {
+	inn := InnJSON{}
+	err := json.UnmarshalRead(r.Body, &inn)
+	if err != nil {
+		http.Error(w, "internal error", http.StatusInternalServerError)
+	}
+	if inn.Inn == "123456789010" {
+	}
 }
 func (Mock) BkiEndpoint(w http.ResponseWriter, r *http.Request) {
+	inn := InnJSON{}
+	err := json.UnmarshalRead(r.Body, &inn)
+	if err != nil {
+		http.Error(w, "internal error", http.StatusInternalServerError)
+	}
+	if inn.Inn == "123456789010" {
+	}
 }
 
 func (m Mock) Check(ctx context.Context, inn string) (application.LegalInfo, error) {

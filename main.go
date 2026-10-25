@@ -22,8 +22,8 @@ func main() {
 	ctx, stop := signal.NotifyContext(context.Background(),
 		syscall.SIGINT, syscall.SIGTERM)
 	go func() { <-ctx.Done(); stop() }()
-	addr := os.Args[1]
-	JWTKey := os.Args[2]
+	addr := os.Getenv("ADDRESS")
+	JWTKey := os.Getenv("JWTKEY")
 	api := server.API{
 		Applications: app_reg.NewInMemoryApplicationStore(),
 		Users:        user_reg.NewUsersRegistry([]byte(JWTKey)),
